@@ -1,0 +1,159 @@
+<?php  
+
+session_start();
+
+
+# config data, data base, cookies
+# HOTS use allways ip of host, will work better with PDO, if use domain name will take longer cuz makes a DNS TALBE LOOK UP to find the domain name and take a lot longer to load
+$GLOBALS['config'] = array(
+	#MySql settings
+	'mysql'			=> array(
+		'host'			=> 'localhost', 
+		'user_name'		=> 'skyviews_test',
+		'password'		=> 'loreiastest',
+		'db'			=> 'skyviews_test'
+	),
+
+	# Cookies
+	'remember'		=> array(
+		'cookie_name'	=> 'hash',
+		'cookie_expiry'	=> 604800 # one moth in seconds 
+	), 
+
+	#session and token
+	'session'		=> array(
+		'session_name'	=> 'user',
+		'token_name' 	=> 'token' # token to autenticate page and avoid	 
+	) 
+);
+
+
+# load classes 
+# load then using standar php library to load only the classes the has been call instend of requiring all of then
+spl_autoload_register(  function ( $class ){
+		# $class will be replace with the class name the its been call
+
+		# work around calling the facebook api class, wich gives a problem with the SPL_AUTOLOAD_REGISTER, wich will try to call all class by the giving path
+		# return in there the pass class has contains facebook string 
+		$facebook_class = strpos( strtolower($class), 'facebook');
+		
+		# just use the class the do not contain whe word facebook in it 
+		if( $facebook_class  === false  ){
+			require_once 'classes/'. $class . '.php';
+		}
+
+	}
+);
+
+
+
+# load functions
+require_once 'functions/sanitize.php';
+
+
+
+# check if the cookie exist and the user is NOT loging
+if( Cookie::exists( Config::get('remember/cookie_name')) && !Session::exists(Config::get('session/session_name'))){
+
+	# cookie DOES exists
+	# check if user is log or not
+
+	# get the cookie
+	$hash = Cookie::get( Config::get('remember/cookie_name') );
+
+
+	# geth the hash from users session table
+	$hash_check = DB::getInstance()->get('users_sessions', array('hash', '=', $hash));
+
+	# validate if hashes match, log user in
+	if( $hash_check->count() ){
+		# hash store in db and cookie hash matches log user in
+
+		$user =  new User( $hash_check->first()->user_id );
+
+		$user->login(); 
+
+	}
+
+}	
+
+
+# FACEBOOK API
+require_once 'autoload.php';
+
+# FACEBOOK api key
+Facebook\FacebookSession::setDefaultApplication('1490778374534531', '2f4ff20a2e937de3c7b4988693aff66a');
+# Facebook redirect url
+$facebook = new Facebook\FacebookRedirectLoginHelper('http://beta.skyviewestimator.com/index.php');
+
+
+try{
+# handles process after coming back from facebook api for access
+
+	if( $session = $facebook->getSessionFromRedirect() ){
+	# if there redirect method exists
+	
+		# get token generate by facebook api and store it in the session
+		$_SESSION['facebook'] = $session->getToken();
+		header('location: index.php'); 
+	}
+
+	# if facebook session is already set
+	if( isset($_SESSION['facebook'])){
+	# get user data from facebook api
+	# create request, execute request and get user data
+	# add user info to DB if already added log in the user 	
+
+		// session wich is the token generate by facebook api
+		$session = new Facebook\FacebookSession($_SESSION['facebook']);
+		
+		// request retrive info about user
+		// $session = token been validated, GET = method, /me = user details
+		$request = new Facebook\FacebookRequest($session, 'GET', '/me');
+
+		// execute the request
+		$request = $request->execute();
+
+		# get user data
+		$facebook_user_info =  $request->getGraphObject()->asArray();
+		
+		#######################
+		# verify if user exists
+		#######################
+		$db_inst = DB::getInstance();
+		
+		# query for matches for facebook user email in the DB  		
+		$facebook_user = $db_inst->get('users', array( 'email', '=', $facebook_user_info['email']), 'id');
+
+		# validate if the FACEBOOK user email exist in DB
+		if( $facebook_user->count()){
+		# email founded user alredy exist
+		# log user in
+			echo 'log user in';
+
+			
+		}else{
+		# email not found
+		# add user to db as FACEBOOK register	
+			echo "create user";			
+		}
+
+
+		# age
+		// echo date_diff(date_create('1970-02-01'), date_create('today'))->y;
+			
+			
+	}
+
+} catch( Facebook\FacebookRequestException $e  ){
+# catch any errors from facebook api 
+	var_dump($e);
+}catch ( \Exeception $e ){
+# get normal exception Local problem 
+	var_dump($e);
+}
+
+
+
+
+?>

@@ -1,0 +1,372 @@
+.dashboard-stat{
+	cursor:pointer;
+}
+
+.login .content{
+	/*background:rgba(255,255,255,.25);*/
+}
+
+.l-display-block{
+	display:block !important;
+}
+
+.l-display-inline-block{
+	display:inline-block;
+}
+
+.l-display-inline{
+	display:inline;
+}
+
+
+.l-float-l{
+	float:left;
+}
+
+.l-float-r{
+	float:right;
+}
+
+
+.l-margin-none{
+	margin:0;
+}
+
+.l-margin-top{
+	margin-top:50px !important;
+}
+
+
+.l-margin-top-20px{
+	margin-top:20px !important;
+}
+
+.l-margin-top-30px{
+	margin-top:30px !important;
+}
+
+.l-margin-bottom-20px{
+	margin-bottom:20px !important;
+}
+
+.l-margin-bottom-30px{
+	margin-bottom:30px !important;
+}
+
+
+.l-padding-none{
+	padding:0 !important;
+}
+
+.l-padding-20{
+	padding:20px;
+}
+
+
+
+
+
+#wifi-logo{
+	position: relative;
+	z-index:100;
+}
+
+
+.login-warper-border{
+	/*border:5px solid #35aa47;*/
+	/*border:5px solid rgba(53,170,71,.85);*/
+	border:5px solid white;
+	border:5px solid rgba(255,255,255,.85);
+}
+
+
+.form-wraper{}
+
+
+.intro-text{
+	text-align: center;
+	color: #fff;
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 15px;
+	line-height: 1.42857143
+}
+
+
+.intro-text .name{
+	font-size: 4.75em;
+	display: block;
+	text-transform: uppercase;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 2em;
+	font-weight: 700;	
+}
+
+.intro-text .sub-name{
+	font-size: 1.25em;
+	font-weight: 300;
+
+}
+
+.text-align-center{
+	text-align:center;
+}
+
+
+.custom-alert-error{
+    /*background-color: #bb2413;*/
+    background-color: #f2dede;
+	color:#a94442 !important;
+    /*color: white !important;*/
+    text-shadow: none;
+    padding:2px 5px;	
+}
+
+.separator_dotted{
+    border-top: 1px dotted #eee;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.social-icons li{
+	padding-top:5px;
+	padding-left:10px;
+}
+
+
+/**************************
+BACK GROUND
+**************************/
+
+#bg{
+	background: url("/assets/img/bg/slice_skyBG.jpg") repeat left top;
+	position:fixed;
+	width:100%;
+	height: 100%;
+	top:0;
+	left:0;
+}
+	
+.bg_imgs_position{
+	position:absolute;
+	width:100%;		
+}
+
+
+#island{
+	bottom:0;
+	z-index:5;
+}
+
+
+#mountain{
+	bottom:-45px;
+	left:0;
+	z-index:1;
+}
+
+
+
+/* WAVES............................*/		
+	#waves{}
+
+	.wave{
+	    background-repeat: repeat-x;
+	    position: absolute;
+	    width: 125%;
+	}
+
+
+	#waves_back{
+	    background-image: url("/assets/img/bg/water-back.png");
+	    bottom: -25px;
+	    height: 84px;
+	    left: -20px;
+	    z-index: 2;
+		-webkit-animation: water-back-animation 3s infinite ease-in-out;
+		-moz-animation: water-back-animation 3s infinite ease-in-out;
+		-o-animation: water-back-animation 3s infinite ease-in-out;
+		-ms-animation: water-back-animation 3s infinite ease-in-out;
+		animation: water-back-animation 3s infinite ease-in-out;		    
+	}
+
+	#waves_front{
+	    background-image: url("/assets/img/bg/water-front.png");
+	    bottom: -118px;
+	    height: 158px;
+	    left: -30px;
+	    z-index: 3;
+		-webkit-animation: water-midle-animation 2s infinite ease-in-out;
+		-moz-animation: water-midle-animation 2s infinite ease-in-out;
+		-o-animation: water-midle-animation 2s infinite ease-in-out;
+		-ms-animation: water-midle-animation 2s infinite ease-in-out;
+		animation: water-midle-animation 2s infinite ease-in-out;	
+	}
+
+	#waves_top{
+	    background-image: url("/assets/img/bg/water-front.png");
+	    bottom: -135px;
+	    height: 158px;
+	    left: -55px;
+	    z-index: 9;
+		-webkit-animation: water-front-animation 3s infinite ease-in-out;
+		-moz-animation: water-front-animation 3s infinite ease-in-out;
+		-o-animation: water-front-animation 3s infinite ease-in-out;
+		-ms-animation: water-front-animation 3s infinite ease-in-out;
+		animation: water-front-animation 3s infinite ease-in-out;		
+	}
+
+
+/*CLOUDS............................*/	
+
+	#clouds{
+		width:100%;
+		height: 100%;
+		top:0;
+		left:0;
+	}
+
+	.clouds{
+		background: url("/assets/img/bg/slice_claud.png") no-repeat;
+		position:absolute;
+		width:239px;
+		height: 102px;
+	}
+
+	#cloud_1{
+		top:5%;
+		left:5%;
+		z-index: 5;
+	}			
+	
+
+
+	#sun{
+		/*		
+		width:353px;
+		height: 347px;
+		*/
+		position: absolute;
+		z-index: 50;
+		top:20px;
+		right: 20px;
+	}	
+
+
+/* WebKit Animations */
+@-webkit-keyframes water-back-animation {
+	0%   {bottom: -25px; left: -20px;}
+	25%  {bottom: -23px; left: -22px;}
+	70%  {bottom: -27px; left: -24px;}
+	100% {bottom: -24px; left: -20px;}
+}
+
+@-webkit-keyframes water-midle-animation {
+	0%   {bottom: -118px; left: -30px;}
+	25%  {bottom: -116px; left: -32px;}
+	70%  {bottom: -120px; left: -34px;}
+	100% {bottom: -117px; left: -30px;}
+}
+
+@-webkit-keyframes water-front-animation {
+	0%   {bottom: -135px; left: -55px;}
+	25%  {bottom: -133px; left: -57px;}
+	70%  {bottom: -137px; left: -59px;}
+	100% {bottom: -134px; left: -55px;}	
+}
+
+
+
+/*MOZ animation */
+@-moz-keyframes water-back-animation {
+	0%   {bottom: -25px; left: -20px;}
+	25%  {bottom: -23px; left: -22px;}
+	70%  {bottom: -27px; left: -24px;}
+	100% {bottom: -24px; left: -20px;}	
+}
+
+@-moz-keyframes water-midle-animation {
+	0%   {bottom: -118px; left: -30px;}
+	25%  {bottom: -116px; left: -32px;}
+	70%  {bottom: -120px; left: -34px;}
+	100% {bottom: -117px; left: -30px;}
+}
+
+
+@-moz-keyframes water-front-animation {
+	0%   {bottom: -135px; left: -55px;}
+	25%  {bottom: -133px; left: -57px;}
+	70%  {bottom: -137px; left: -59px;}
+	100% {bottom: -134px; left: -55px;}	
+}
+
+
+/*OPERA Animation		*/
+@-o-keyframes water-back-animation {
+	0%   {bottom: -25px; left: -20px;}
+	25%  {bottom: -23px; left: -22px;}
+	70%  {bottom: -27px; left: -24px;}
+	100% {bottom: -24px; left: -20px;}	
+}
+
+@-o-keyframes water-midle-animation {
+	0%   {bottom: -118px; left: -30px;}
+	25%  {bottom: -116px; left: -32px;}
+	70%  {bottom: -120px; left: -34px;}
+	100% {bottom: -117px; left: -30px;}
+}
+
+
+@-o-keyframes water-front-animation {
+	0%   {bottom: -135px; left: -55px;}
+	25%  {bottom: -133px; left: -57px;}
+	70%  {bottom: -137px; left: -59px;}
+	100% {bottom: -134px; left: -55px;}	
+}
+
+
+/*IE Animation*/
+@-ms-keyframes water-back-animation {
+	0%   {bottom: -25px; left: -20px;}
+	25%  {bottom: -23px; left: -22px;}
+	70%  {bottom: -27px; left: -24px;}
+	100% {bottom: -24px; left: -20px;}		
+}
+
+@-ms-keyframes water-midle-animation {
+	0%   {bottom: -118px; left: -30px;}
+	25%  {bottom: -116px; left: -32px;}
+	70%  {bottom: -120px; left: -34px;}
+	100% {bottom: -117px; left: -30px;}
+}
+
+
+@-ms-keyframes water-front-animation {
+	0%   {bottom: -135px; left: -55px;}
+	25%  {bottom: -133px; left: -57px;}
+	70%  {bottom: -137px; left: -59px;}
+	100% {bottom: -134px; left: -55px;}	
+}
+
+
+
+/*Animation*/
+@keyframes water-back-animation {
+	0%   {bottom: -25px; left: -20px;}
+	25%  {bottom: -23px; left: -22px;}
+	70%  {bottom: -27px; left: -24px;}
+	100% {bottom: -24px; left: -20px;}	
+}
+
+@keyframes water-midle-animation {
+	0%   {bottom: -118px; left: -30px;}
+	25%  {bottom: -116px; left: -32px;}
+	70%  {bottom: -120px; left: -34px;}
+	100% {bottom: -117px; left: -30px;}
+}
+
+@keyframes water-front-animation {
+	0%   {bottom: -135px; left: -55px;}
+	25%  {bottom: -133px; left: -57px;}
+	70%  {bottom: -137px; left: -59px;}
+	100% {bottom: -134px; left: -55px;}	
+}
